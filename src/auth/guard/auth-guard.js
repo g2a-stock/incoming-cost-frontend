@@ -10,13 +10,6 @@ import { useAuthContext } from '../hooks';
 
 // ----------------------------------------------------------------------
 
-const loginPaths = {
-  jwt: paths.auth.jwt.login,
-  auth0: paths.auth.auth0.login,
-  amplify: paths.auth.amplify.login,
-  firebase: paths.auth.firebase.login,
-};
-
 // ----------------------------------------------------------------------
 
 export default function AuthGuard({ children }) {
@@ -44,7 +37,7 @@ function Container({ children }) {
         returnTo: window.location.pathname,
       }).toString();
 
-      const loginPath = loginPaths[method];
+      const loginPath = paths.auth.login;
 
       const href = `${loginPath}?${searchParams}`;
 

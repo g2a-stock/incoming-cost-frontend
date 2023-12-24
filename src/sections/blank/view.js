@@ -14,7 +14,9 @@ export default function BlankView() {
 
   return (
     <Container maxWidth={settings.themeStretch ? false : 'xl'}>
-      <Typography variant="h4"> Blank </Typography>
+      <Typography variant="h6">
+        Чтобы выполнить поиск продукта, воспользуйтесь поиском, расположенным немного выше.
+      </Typography>
 
       <Box
         sx={{

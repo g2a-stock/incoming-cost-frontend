@@ -11,6 +11,7 @@ import { useRouter } from 'src/routes/hooks';
 
 import FormProvider from 'src/components/hook-form';
 
+import Iconify from '../../components/iconify';
 import { fCurrency } from '../../utils/format-number';
 import { useGetProductIncome } from '../../api/product';
 
@@ -83,6 +84,8 @@ export default function ProductDetailsSummary({
       <Typography variant="subtitle2" sx={{ flexGrow: 1 }}>
         Стоимость
       </Typography>
+      {incomeLoading && <Iconify icon="svg-spinners:12-dots-scale-rotate" width={24} />}
+
       {income
         ? `€ ${fCurrency(income)} ~ $ ${fCurrency(income * 1.1027)}`
         : 'Продукт временно не требуется'}

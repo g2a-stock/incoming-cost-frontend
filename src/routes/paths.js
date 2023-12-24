@@ -52,6 +52,7 @@ export const paths = {
   },
   // AUTH
   auth: {
+    login: `${ROOTS.AUTH}/login`,
     amplify: {
       login: `${ROOTS.AUTH}/amplify/login`,
       verify: `${ROOTS.AUTH}/amplify/verify`,
