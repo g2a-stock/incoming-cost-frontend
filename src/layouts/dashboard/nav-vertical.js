@@ -14,8 +14,8 @@ import Scrollbar from 'src/components/scrollbar';
 import { NavSectionVertical } from 'src/components/nav-section';
 
 import { NAV } from '../config-layout';
-import { useAuthContext } from '../../auth/hooks';
 import { useNavData } from './config-navigation';
+import { useAuthContext } from '../../auth/hooks';
 import NavToggleButton from '../common/nav-toggle-button';
 
 // ----------------------------------------------------------------------

@@ -1,7 +1,7 @@
 'use client';
 
 import isEqual from 'lodash/isEqual';
-import {useState, useCallback, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 
 import Card from '@mui/material/Card';
 import Table from '@mui/material/Table';
@@ -35,10 +35,10 @@ import {
 } from 'src/components/table';
 
 import UserTableRow from '../user-table-row';
-import UserTableToolbar from '../user-table-toolbar';
-import UserTableFiltersResult from '../user-table-filters-result';
-import {deleteUser, useGetUsers} from "../../../api/user";
 import {RoleBasedGuard} from "../../../auth/guard";
+import UserTableToolbar from '../user-table-toolbar';
+import {deleteUser, useGetUsers} from "../../../api/user";
+import UserTableFiltersResult from '../user-table-filters-result';
 
 // ----------------------------------------------------------------------
 

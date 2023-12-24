@@ -7,8 +7,8 @@ import { paths } from 'src/routes/paths';
 import { useSettingsContext } from 'src/components/settings';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
-import UserNewEditForm from '../user-new-edit-form';
 import {RoleBasedGuard} from "../../../auth/guard";
+import UserNewEditForm from '../user-new-edit-form';
 
 // ----------------------------------------------------------------------
 

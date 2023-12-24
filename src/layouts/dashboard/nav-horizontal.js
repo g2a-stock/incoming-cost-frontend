@@ -10,8 +10,8 @@ import Scrollbar from 'src/components/scrollbar';
 import { NavSectionHorizontal } from 'src/components/nav-section';
 
 import { HEADER } from '../config-layout';
-import { useAuthContext } from '../../auth/hooks';
 import { useNavData } from './config-navigation';
+import { useAuthContext } from '../../auth/hooks';
 import HeaderShadow from '../common/header-shadow';
 
 // ----------------------------------------------------------------------

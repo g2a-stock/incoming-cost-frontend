@@ -1,13 +1,12 @@
 import * as Yup from 'yup';
-import PropTypes from 'prop-types';
 import {useMemo} from 'react';
+import PropTypes from 'prop-types';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
-
 import Grid from '@mui/material/Unstable_Grid2';
 import LoadingButton from '@mui/lab/LoadingButton';
 
@@ -19,7 +18,7 @@ import FormProvider, {
   RHFSwitch,
   RHFTextField,
 } from 'src/components/hook-form';
-import {RoleBasedGuard} from "../../auth/guard";
+
 import {createUser, updateUser} from "../../api/user";
 
 // ----------------------------------------------------------------------
@@ -96,8 +95,8 @@ export default function UserNewEditForm({currentUser}) {
                   sm: 'repeat(2, 1fr)',
                 }}
               >
-                <RHFTextField name="login" label="Логин" disabled={currentUser ? true : false}/>
-                <RHFTextField name="password" label="Пароль" disabled={currentUser ? true : false}/>
+                <RHFTextField name="login" label="Логин" disabled={!!currentUser}/>
+                <RHFTextField name="password" label="Пароль" disabled={!!currentUser}/>
                 <RHFTextField name="percentage" label="Процент"/>
                 <RHFTextField name="description" label="Описание"/>
                 <RHFSwitch name="active" label="Активен" />

@@ -1,5 +1,5 @@
-import useSWR, {mutate} from 'swr';
 import { useMemo } from 'react';
+import useSWR, {mutate} from 'swr';
 
 import axios, { fetcher, endpoints } from 'src/utils/axios';
 
@@ -18,7 +18,7 @@ export async function createUser(data) {
 
 export async function updateUser(data, userId) {
   try{
-    const URL = endpoints.user.create + '/' + userId;
+    const URL = `${endpoints.user.create  }/${  userId}`;
     const response = await axios.patch(URL, data);
 
     mutate(URL);
@@ -31,7 +31,7 @@ export async function updateUser(data, userId) {
 
 export async function deleteUser(userId) {
   try{
-    const URL = endpoints.user.details + '/' + userId;
+    const URL = `${endpoints.user.details  }/${  userId}`;
     const response = await axios.delete(URL);
 
     return response.data
@@ -45,15 +45,13 @@ export function useGetUsers() {
   const URL = endpoints.user.list;
   const { data, isLoading, error, isValidating } = useSWR(URL, fetcher);
 
-  const memoizedValue = useMemo(() => {
-    return {
+  const memoizedValue = useMemo(() => ({
       users: data || [], // Список пользователей
       usersLoading: isLoading, // Загрузка идет, если нет данных и нет ошибки
       usersError: error, // Ошибка при запросе
       usersValidating: isValidating, // SWR выполняет повторную валидацию
       usersEmpty: !isLoading && !data?.length, // Пустой ли список пользователей
-    };
-  }, [data, error, isLoading, isValidating]);
+    }), [data, error, isLoading, isValidating]);
 
   return memoizedValue;
 }
@@ -62,15 +60,13 @@ export function useGetUser(userId) {
   const URL = userId ? `${endpoints.user.details}/${userId}` : '';
   const { data, isLoading, error, isValidating } = useSWR(URL, fetcher);
 
-  const memoizedValue = useMemo(() => {
-    return {
+  const memoizedValue = useMemo(() => ({
       user: data || null, // Список пользователей
       userLoading: isLoading, // Загрузка идет, если нет данных и нет ошибки
       userError: error, // Ошибка при запросе
       userValidating: isValidating, // SWR выполняет повторную валидацию
       userEmpty: !isLoading && !data, // Пустой ли список пользователей
-    };
-  }, [data, error, isLoading, isValidating]);
+    }), [data, error, isLoading, isValidating]);
 
   return memoizedValue;
 }

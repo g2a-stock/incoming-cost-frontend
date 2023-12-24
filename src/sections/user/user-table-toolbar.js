@@ -25,8 +25,7 @@ export default function UserTableToolbar({
   );
 
   return (
-    <>
-      <Stack
+    <Stack
         spacing={2}
         alignItems={{ xs: 'flex-end', md: 'center' }}
         direction={{
@@ -54,7 +53,6 @@ export default function UserTableToolbar({
           />
         </Stack>
       </Stack>
-    </>
   );
 }
 
