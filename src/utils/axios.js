@@ -46,10 +46,11 @@ export const endpoints = {
     search: '/api/post/search',
   },
   product: {
-    list: '/api/products/income/10000338765002',
     details: '/api/products',
     search: '/api/search/products',
     income: '/api/products/income',
+    filter: '/api/products/filter',
+    history: '/api/search/history',
   },
   user: {
     create: '/api/users',

@@ -5,10 +5,37 @@ import { fetcher, endpoints } from 'src/utils/axios';
 
 // ----------------------------------------------------------------------
 
+// Определите максимальное количество результатов, которые вы хотите сохранить
+const MAX_CACHE_SIZE = 10;
+
+// Функция для настройки кэша
+const setupCache = () => {
+  const customCache = new Map();
+
+  return {
+    set: (key, value) => {
+      customCache.set(key, value);
+
+      // Ограничьте кэш до MAX_CACHE_SIZE
+      if (customCache.size > MAX_CACHE_SIZE) {
+        const oldestKey = customCache.keys().next().value;
+        customCache.delete(oldestKey);
+      }
+    },
+    get: (key) => customCache.get(key),
+    delete: (key) => customCache.delete(key),
+    keys: () => customCache.keys(),
+  };
+};
+
+const customCache = setupCache();
+
 export function useGetProducts() {
   const URL = endpoints.product.list;
 
-  const { data, isLoading, error, isValidating } = useSWR(URL, fetcher);
+  const { data, isLoading, error, isValidating } = useSWR(URL, fetcher, {
+    cache: customCache, // Указываем настроенный кэш
+  });
 
   const memoizedValue = useMemo(
     () => ({
@@ -46,8 +73,8 @@ export function useGetProduct(productId) {
 
 // ----------------------------------------------------------------------
 
-export function useSearchProducts(name) {
-  const URL = [endpoints.product.search, { params: { name } }];
+export function useSearchProducts(name, region, platform, activeOffers) {
+  const URL = [endpoints.product.search, { params: { name, region, platform, activeOffers } }];
 
   const { data, isLoading, error, isValidating } = useSWR(URL, fetcher, {
     keepPreviousData: true,
@@ -60,6 +87,26 @@ export function useSearchProducts(name) {
       searchError: error,
       searchValidating: isValidating,
       // searchEmpty: !isLoading && !data?.results.length,
+    }),
+    [data, error, isLoading, isValidating]
+  );
+
+  return memoizedValue;
+}
+
+// ----------------------------------------------------------------------
+
+export function useGetSearchHistory() {
+  const URL = endpoints.product.history;
+
+  const { data, isLoading, error, isValidating } = useSWR(URL, fetcher);
+
+  const memoizedValue = useMemo(
+    () => ({
+      productsHistory: data?.productsHistory,
+      productsHistoryLoading: isLoading,
+      productsHistoryError: error,
+      productsHistoryValidating: isValidating,
     }),
     [data, error, isLoading, isValidating]
   );
@@ -83,4 +130,26 @@ export function useGetProductIncome(productId) {
   );
 
   return memoizedValue;
+}
+
+export function useGetProductsFilter() {
+  const URL = endpoints.product.filter;
+
+  const { data, isLoading, error, isValidating } = useSWR(URL, fetcher);
+
+  const memoizedValue = useMemo(
+    () => ({
+      productsFilter: data,
+      productsFilterLoading: isLoading,
+      productsFilterError: error,
+      productsFilterValidating: isValidating,
+    }),
+    [data, error, isLoading, isValidating]
+  );
+
+  return memoizedValue;
+}
+
+export function getAllCachedProductKeys() {
+  return Array.from(customCache.keys());
 }
