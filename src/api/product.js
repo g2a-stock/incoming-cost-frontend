@@ -103,7 +103,7 @@ export function useGetSearchHistory() {
 
   const memoizedValue = useMemo(
     () => ({
-      productsHistory: data?.productsHistory,
+      productsHistory: data?.productsHistory.reverse(),
       productsHistoryLoading: isLoading,
       productsHistoryError: error,
       productsHistoryValidating: isValidating,
