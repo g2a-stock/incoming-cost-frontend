@@ -15,6 +15,8 @@ import TableContainer from '@mui/material/TableContainer';
 
 import { paths } from 'src/routes/paths';
 
+import Label from 'src/components/label';
+import { TableHeadCustom } from 'src/components/table';
 import { useSettingsContext } from 'src/components/settings';
 
 import Iconify from '../../components/iconify';
@@ -22,8 +24,6 @@ import Scrollbar from '../../components/scrollbar';
 import { RouterLink } from '../../routes/components';
 import { fCurrency } from '../../utils/format-number';
 import { useGetSearchHistory } from '../../api/product';
-import Label from '../../../Minimal_JavaScript_v5.6.0/next-js/src/components/label';
-import { TableHeadCustom } from '../../../Minimal_JavaScript_v5.6.0/next-js/src/components/table';
 // ----------------------------------------------------------------------
 
 export default function BlankView() {
